@@ -1,6 +1,7 @@
 --#########################################################################
 --Day 1 Solutions
 --#########################################################################
+
 --### Queries on a single table #######
 -- 1.1 a)
 SELECT *
@@ -28,6 +29,7 @@ WHERE job = 'CLERK';
 SELECT ename
 FROM emp
 WHERE hiredate < to_date('01-05-1981','DD MM YYYY');
+
 --### Aggregate functions #######
 -- 1.2 a)
 SELECT COUNT(*) AS "Total employees"
@@ -50,6 +52,7 @@ SELECT MAX(sal),
 FROM emp
 GROUP BY deptno
 ORDER BY deptno DESC;
+
 --### Joining tables #######
 -- 1.3 a) Using a where clause
 SELECT loc "Allens location"
@@ -75,6 +78,7 @@ FROM emp e
 JOIN dept d
 ON e.deptno  = d.deptno
 WHERE d.dname='SALES';
+
 --### Subqueries (with alternatives) #######
 -- 1.4 a)
 -- 1) Strategy find the id of Smiths manager (the inner query)
@@ -128,34 +132,37 @@ WHERE empno =
     )
   );
 
---1.4 d)
---Strategy (from inside out)
--- 1) Find all employees who are managers
--- 2) Use this info to find all employees who are not managers
--- 3) Use this info to find the details of managers found in step 2
---1)
-SELECT e1.empno
-FROM emp e1
-JOIN emp e2
-ON e1.empno = e2.mgr;
---2)
-SELECT mgr
-FROM emp
-WHERE empno NOT IN
-  ( SELECT e1.empno FROM emp e1 JOIN emp e2 ON e1.empno = e2.mgr
-  );
-
---3)
-SELECT * -- Select managers of all non-managers
-FROM emp
-WHERE empno IN
-  (
-  SELECT mgr FROM emp -- Select all NON-managers
-  WHERE empno NOT IN
-    ( 
-    SELECT e1.empno FROM emp e1 --Find all managers
-    JOIN emp e2 ON e1.empno = e2.mgr
+--Let's continue :-) Who is the manager of Smiths managers, managers managers manager
+SELECT ename, nvl(to_char(mgr),'Has no manager') "Smitms m's m's m's m"FROM emp
+WHERE empno =
+  (SELECT mgr
+  FROM emp
+  WHERE empno =
+    (SELECT mgr
+    FROM emp
+    WHERE --Smith's managers manager
+      empno =
+      ( SELECT mgr FROM emp /*--Smiths manager*/
+      WHERE ename = 'SMITH'
+      )
     )
   );
 
+--1.4 d)
+--Strategy (from inside out)
+-- 1) Find all employees who are managers
+-- 2) Use this info to find all mgr's from employees who are not managers
+-- 3) Use this to find the details of the managers
+
+SELECT * -- 3) Select managers of all non-managers
+FROM emp
+WHERE empno IN
+  (
+  SELECT mgr FROM emp -- 2) Select all NON-managers
+  WHERE empno NOT IN
+    ( 
+    SELECT e1.empno FROM emp e1 --1)Find all managers
+    JOIN emp e2 ON e1.empno = e2.mgr
+    )
+  );
 

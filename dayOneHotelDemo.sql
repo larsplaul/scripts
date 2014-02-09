@@ -35,7 +35,7 @@ FROM    hotel, room
 WHERE hotel.hotelNo = room.hotelNo;
 
 
-SELECT hotelName, type
+SELECT hotelName, type, count(type)
 FROM    hotel, room
 WHERE hotel.hotelNo = room.hotelNo
 group by hotelName, type;
