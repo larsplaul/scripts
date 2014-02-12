@@ -6,7 +6,6 @@
 -- specify date format for this session
 -- change decimal point to full stop in insert statements
 alter session set nls_date_format = 'yyyy-mm-dd';
---ALTER SESSION SET NLS_NUMERIC_CHARACTERS = ', ';
 ALTER SESSION SET NLS_NUMERIC_CHARACTERS = '.,';
 ---------------------------------------------------------
 DROP TABLE ORDERS_TBL;
