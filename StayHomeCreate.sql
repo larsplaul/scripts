@@ -139,6 +139,9 @@ insert into director values('D0078','Andrew Adamson');
 insert into director values('D5743','Barry Sonnenfeld');
 insert into director values('D3765','Roland Emmerick');
 
+
+
+
 insert into video values(207132, 'Die Another Day', 'Action', 5.00, 
 21.99, 'D1001');
 insert into video values(902355, 'Harry Potter', 'Children', 4.50, 
@@ -196,17 +199,17 @@ insert into videoforrent values(178643, 'N', 634817, 'B001');
 insert into videoforrent values(243431, 'Y', 634817, 'B002');
 
 
-insert into rentalagreement values('R753461', to_date('04-feb-03', 
-'DD-MON-YY'), to_date('06-feb-03', 'DD-MON-YY'), 'M284354', 
+insert into rentalagreement values('R753461', to_date('04-02-03', 
+'DD-MM-YY'), to_date('06-02-03', 'DD-MM-YY'), 'M284354', 
 245456);
-insert into rentalagreement values('R753462', to_date('04-feb-03', 
-'DD-MON-YY'), to_date('06-feb-03', 'DD-MON-YY'), 'M284354', 
+insert into rentalagreement values('R753462', to_date('04-02-03', 
+'DD-MM-YY'), to_date('06-02-03', 'DD-MM-YY'), 'M284354', 
 243431);
-insert into rentalagreement values('R668256', to_date('05-feb-03', 
-'DD-MON-YY'), to_date('07-feb-03', 'DD-MON-YY'), 'M115656', 
+insert into rentalagreement values('R668256', to_date('05-02-03', 
+'DD-MM-YY'), to_date('07-02-03', 'DD-MM-YY'), 'M115656', 
 199004);
-insert into rentalagreement values('R668189', to_date('02-feb-03', 
-'DD-MON-YY'), NULL, 'M115656', 178643);
+insert into rentalagreement values('R668189', to_date('02-02-03', 
+'DD-MM-YY'), NULL, 'M115656', 178643);
 
 
 commit;
