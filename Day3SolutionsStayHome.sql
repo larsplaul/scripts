@@ -161,7 +161,7 @@ SELECT title, directorname from video v, director d, videoforrent vfr
 	and vfr.catalogno = v.catalogno
 	and available = 'Y';
 
---4.6
+--4.6 List the titles of videos rented by members from Seattle.
 --Join syntax
 select v.title from video v
 join videoforrent vfr on v.catalogno = vfr.catalogno
@@ -177,6 +177,15 @@ AND ra.videono = vfr.videono
 AND vfr.catalogno = v.catalogno
 AND address LIKE '%Seattle%';
 	
+SELECT actorname FROM ACTOR
+minus
+SELECT directorname FROM director;
+
+
+
+
+select catalogno from videoforrent
+;
 
 
 

@@ -1,7 +1,7 @@
 --3.1
 
 select title,runtime, rating from DB.MOVIE
-where title like '%Septemper%';
+where title like '%September%';
 
 --3.2
 
@@ -64,6 +64,29 @@ where id in
 		having count(*) = 8);  
 
 
+--	Hvem har instrueret de dårligste film fra 2007?
+	select name from db.person p 
+  join db.casting c on p.id = c.person_id 
+  join db.movie m on m.id = c.movie_id
+	where role = 'director'
+	and year = 2007
+	and m.rating = (select min(rating) from db.movie where year = 2007);
+
+
+12.	Hvad er titlen på den film der har flest personer tilknyttet?
+
+	select title
+	from DB.movie
+	where movie_id in
+	  (select movie_id from
+	     (select movie_id, count(*) antal from DB.casting group by movie_id)
+	     where antal = 
+	         (select max(x) from
+                     (select count(*) x from DB.casting group by movie_id)));
+
+13.	Vi title, år, rating på film der både har genren 'Horror' og 'Romance' og har en rating der er større end 7.
+	select * from DB.movie m, DB.genre g1, DB.genre g2
+	where m.movie_id = g1.movie_id
 
 
 

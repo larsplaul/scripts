@@ -3,11 +3,13 @@
 --ALTER TABLE customer_loan DROP CONSTRAINT fk_customer_cl;
 --ALTER TABLE customer_loan DROP CONSTRAINT fk_loan_cl;
 
+
 DROP TABLE customer_loan;
 DROP TABLE customer;
 DROP TABLE account;
-DROP TABLE loan;
 DROP TABLE branch;
+DROP TABLE loan;
+
 
 
 CREATE TABLE branch
